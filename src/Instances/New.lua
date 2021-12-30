@@ -9,6 +9,7 @@ local Package = script.Parent.Parent
 local PubTypes = require(Package.PubTypes)
 local cleanupOnDestroy = require(Package.Utility.cleanupOnDestroy)
 local Children = require(Package.Instances.Children)
+local Cleanup = require(Package.Instances.Cleanup)
 local Ref = require(Package.Instances.Ref)
 local Scheduler = require(Package.Instances.Scheduler)
 local defaultProps = require(Package.Instances.defaultProps)
@@ -62,7 +63,7 @@ local function New(className: string)
 		]]
 		for key, value in pairs(propertyTable) do
 			-- ignore some keys which will be processed later
-			if key == Children or key == Ref or key == "Parent" then
+			if key == Children or key == Cleanup or key == Ref or key == "Parent" then
 				continue
 
 			--[[
@@ -341,7 +342,15 @@ local function New(className: string)
 		end
 
 		--[[
-			STEP 7: Register cleanup tasks if needed
+			STEP 7: If provided, insert cleanup tasks from [Cleanup] into `cleanupTasks`
+		]]
+		local userCleanupTasks = propertyTable[Cleanup]
+		if userCleanupTasks ~= nil then
+			table.insert(cleanupTasks, userCleanupTasks)
+		end
+
+		--[[
+			STEP 8: Register cleanup tasks if needed
 		]]
 		if cleanupTasks[1] ~= nil then
 			if ENABLE_EXPERIMENTAL_GC_MODE then

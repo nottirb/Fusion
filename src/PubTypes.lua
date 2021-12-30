@@ -119,6 +119,11 @@ export type ChildrenKey = Symbol & {
 	-- name: "Children" (add this when Luau supports singleton types)
 }
 
+-- Denotes what should be cleaned when an instance or component is destroyed, in an instance or component's property table.
+export type CleanupKey = Symbol & {
+	-- name: "Cleanup" (add this when Luau supports singleton types)
+}
+
 -- Denotes reference instances in an instance or component's property table.
 export type RefKey = Symbol & {
 	-- name: "Ref" (add this when Luau supports singleton types)
@@ -151,7 +156,7 @@ export type Children = Instance | StateObject<Children> | {[any]: Children}
 --     [RefKey]: Value
 -- }
 export type PropertyTable = {
-	[string | OnEventKey | OnChangeKey | ChildrenKey | RefKey]: any
+	[string | OnEventKey | OnChangeKey | ChildrenKey | CleanupKey | RefKey]: any
 }
 
 
