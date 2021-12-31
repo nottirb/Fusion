@@ -1,9 +1,9 @@
 [package]
-name = "nottirb/fusion-experimental"
-description = "A modern reactive UI library, built specifically for Roblox and Luau"
+name = "nottirb/fusion-test"
+description = "Experimental version of Fusion. These builds are unstable; I recommend using elttob/fusion."
 license = "MIT"
 authors = ["Elttob"]
-version = "0.1.1.1-beta"
+version = "0.1.1-beta"
 
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
