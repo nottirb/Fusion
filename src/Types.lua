@@ -72,8 +72,7 @@ export type Tween<T> = PubTypes.Tween<T> & {
 	_currentValue: T,
 	_currentTweenInfo: TweenInfo,
 	_currentTweenDuration: number,
-	_currentTweenStartTime: number,
-	_currentlyAnimating: boolean
+	_currentTweenStartTime: number
 }
 
 -- A state object which follows another state object using spring simulation.
